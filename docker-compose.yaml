@@ -1,0 +1,20 @@
+services:
+  tradefusion-app:
+    container_name: tradefusion-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NODE_VERSION: "${NODE_VERSION}"
+    ports:
+      - "${APP_PORT:-8000}:5173"
+    volumes:
+      - ".:/app"
+    networks:
+      - tradefusion-network
+    command: npm run ${APP_ENV:-dev} -- --host
+    user: "${UID}:${GID}"
+
+networks:
+  tradefusion-network:
+    driver: bridge

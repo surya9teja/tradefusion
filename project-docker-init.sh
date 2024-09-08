@@ -1,0 +1,1 @@
+docker run --rm -it --volume $(pwd):/app node:lts-bullseye-slim npm create vite@latest app/tradefusion -- --template vue-ts
